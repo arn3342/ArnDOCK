@@ -1,0 +1,61 @@
+﻿<Window x:Class="ArnDESK.SlideWidget"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArnDESK" AllowsTransparency="True" 
+        mc:Ignorable="d" WindowStyle="None"
+        Title="SideWidget" Height="450" Width="50" Background="{x:Null}" Initialized="Window_Initialized">
+    <Window.Resources>
+        <Storyboard x:Key="SlideIn">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="0" Duration="0:0:0.4">
+                <ThicknessAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </ThicknessAnimation.EasingFunction>
+            </ThicknessAnimation>
+        </Storyboard>
+        <Storyboard x:Key="SlideOut">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" To="44,0,-50,0" Duration="0:0:0.4">
+                <ThicknessAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseInOut"/>
+                </ThicknessAnimation.EasingFunction>
+            </ThicknessAnimation>
+        </Storyboard>
+    </Window.Resources>
+    <Canvas x:Name="MainCan" Margin="44,0,-49,0" MouseEnter="SlideOnHover" MouseLeave="SlideOnLeave">
+        <Rectangle x:Name="MainBody" Width="50" Height="450"  Fill="#FF595959" Canvas.Left="5"/>
+        <local:SmallButtons x:Name="FolderPanelBtn" MouseDown="ShowOption" HorizontalAlignment="Right" DockPanel.Dock="Right" ToolTipText="Folders" ImgOpacity="0.8" Height="50" VerticalAlignment="Top" Width="50" ImgHeight="26" ImgWidth="26" ImgSource="/ArnDESK;component/icos/Folder.png" ImgHorizontalAlignment="Stretch" MouseEnterColor="#FF373737" ImageMLOpacity="0.6" ImageMOOpacity="1" Background="Transparent" Canvas.Left="5">
+            <local:SmallButtons.ContextMenu>
+                <ContextMenu x:Name="cnf"  Closed="ContextMenu_Closed" >
+                    <ContextMenu.Template>
+                        <ControlTemplate>
+                            <Frame Width="390" Height="450" NavigationUIVisibility="Hidden" Source="pack://application:,,,/ArnDESK;component/Panels/FolderPanel.xaml"/>
+                        </ControlTemplate>
+                    </ContextMenu.Template>
+                </ContextMenu>
+            </local:SmallButtons.ContextMenu>
+        </local:SmallButtons>
+        <local:SmallButtons x:Name="ProjectPanelBtn" MouseDown="ShowOption" HorizontalAlignment="Right" ToolTipText="Projects" ImgOpacity="0.8" Height="50" VerticalAlignment="Top" Width="50" ImgHeight="26" ImgWidth="26" ImgSource="icos/Projects.png" ImgHorizontalAlignment="Stretch" MouseEnterColor="#FF373737" ImageMLOpacity="0.6" ImageMOOpacity="1" Background="Transparent" Canvas.Top="51" Canvas.Left="5">
+            <local:SmallButtons.ContextMenu>
+                <ContextMenu x:Name="cnp" Closed="ContextMenu_Closed" >
+                    <ContextMenu.Template>
+                        <ControlTemplate>
+                            <Frame Width="390" Height="450" NavigationUIVisibility="Hidden" Source="pack://application:,,,/ArnDESK;component/Panels/ProjectPanel.xaml"/>
+                        </ControlTemplate>
+                    </ContextMenu.Template>
+                </ContextMenu>
+            </local:SmallButtons.ContextMenu>
+        </local:SmallButtons>
+        <local:SmallButtons x:Name="QCPanelBtn" MouseDown="ShowOption" HorizontalAlignment="Right" ToolTipText="Projects" ImgOpacity="0.8" Height="50" VerticalAlignment="Top" Width="50" ImgHeight="26" ImgWidth="26" ImgSource="icos/quickcodes.png" ImgHorizontalAlignment="Stretch" MouseEnterColor="#FF373737" ImageMLOpacity="0.6" ImageMOOpacity="1" Background="Transparent" Canvas.Top="101" Canvas.Left="5">
+            <local:SmallButtons.ContextMenu>
+                <ContextMenu x:Name="cnc" Closed="ContextMenu_Closed" >
+                    <ContextMenu.Template>
+                        <ControlTemplate>
+                            <Frame Width="390" Height="450" NavigationUIVisibility="Hidden" Source="pack://application:,,,/ArnDESK;component/Panels/CodePanel.xaml"/>
+                        </ControlTemplate>
+                    </ContextMenu.Template>
+                </ContextMenu>
+            </local:SmallButtons.ContextMenu>
+        </local:SmallButtons>
+    </Canvas>
+</Window>

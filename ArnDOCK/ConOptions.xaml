@@ -1,0 +1,59 @@
+﻿<Window x:Class="ArnDESK.ConOptions"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArnDESK" WindowStyle="None"
+        mc:Ignorable="d"
+        Title="ConOptions" Height="201.166" Width="232.444">
+    <Canvas Height="174" Width="228">
+        <Canvas Width="200" Height="156" Background="White" Canvas.Left="6" Canvas.Top="5">
+            <Canvas.Effect>
+                <DropShadowEffect Color="#FFDBD5D5" Opacity="0.6" BlurRadius="25"/>
+            </Canvas.Effect>
+            <Canvas.Resources>
+                <Style x:Key="OptionTB" TargetType="TextBlock">
+                    <Setter Property="Padding" Value="14,7,2,2"/>
+                    <Setter Property="VerticalAlignment" Value="Top"/>
+                    <Setter Property="Height" Value="32"/>
+                    <Setter Property="Width" Value="193"/>
+                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE1E1E1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style x:Key="OptionRT" TargetType="Rectangle">
+                    <Setter Property="Fill" Value="White"/>
+                    <Setter Property="Width" Value="41"/>
+                    <Setter Property="Height" Value="41"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Fill" Value="#FFE1E1E1"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Canvas.Resources>
+            <TextBlock Style="{StaticResource OptionTB}" Text="Add application..."/>
+            <TextBlock x:Name="IconChooserBtn" Style="{StaticResource OptionTB}" Text="Change icon" Canvas.Top="32"/>
+            <local:SmallButtons x:Name="mnbtn2" HorizontalAlignment="Right" DockPanel.Dock="Right" ToolTipText="Overview" ImgOpacity="0.6" Height="36" VerticalAlignment="Top" Width="35" ImgHeight="16" ImgWidth="16" ImgSource="/ArnDESK;component/icos/settings.png" ImgHorizontalAlignment="Stretch" MouseEnterColor="#FFD6D6D6" ImageMLOpacity="0.6" ImageMOOpacity="100" Canvas.Top="120"/>
+
+            <Path  x:Name="Indicator" IsHitTestVisible="False" 
+            Stretch="Fill"
+            Data="M 8 9 12 12 8 15"                                        
+            VerticalAlignment="Top" 
+            HorizontalAlignment="Right"
+            SnapsToDevicePixels="false" Width="6.641" Height="14.642"  RenderTransformOrigin="0.5,0.5" StrokeThickness="2" Canvas.Left="23.359" Canvas.Top="152" Fill="White" >
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <local:SmallButtons x:Name="mnbtn2_Copy" HorizontalAlignment="Right" ToolTipText="Overview" ImgOpacity="0.6" Height="36" VerticalAlignment="Top" Width="35" ImgHeight="16" ImgWidth="16" ImgSource="icos/exit.png" ImgHorizontalAlignment="Stretch" MouseEnterColor="#FFD6D6D6" ImageMLOpacity="0.6" ImageMOOpacity="100" Canvas.Top="120" Canvas.Left="36"/>
+        </Canvas>
+    </Canvas>
+</Window>

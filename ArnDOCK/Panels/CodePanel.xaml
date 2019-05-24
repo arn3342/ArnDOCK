@@ -1,0 +1,200 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+      xmlns:local="clr-namespace:ArnDESK" x:Class="ArnDESK.CodePanel" 
+      mc:Ignorable="d"
+      Width="390" Height="450" Background="Transparent">
+    <Page.Resources>
+        <ControlTemplate x:Key="ScrollViewerControlTemplate1" TargetType="{x:Type ScrollViewer}">
+            <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1"/>
+                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.RowSpan="2" Margin="{TemplateBinding Padding}" Grid.ColumnSpan="2"/>
+                <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Width="8" Background="{x:Null}"/>
+                <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Height="8"/>
+            </Grid>
+        </ControlTemplate>
+        <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Width" Value="4"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Background" Value="#FFE0E0E0"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HorizontalThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid>
+                            <Rectangle x:Name="VerRect" Fill="#FF9FCBFF" Height="6" Margin="-1,0"  />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="Height" From="6" To="8" Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="(Fill).Color" From="#FF9FCBFF" To="#FF51A0FD" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="Height" From="8" To="6" Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="(Fill).Color" From="#FF51A0FD" To="#FF9FCBFF" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="VerticalThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid>
+                            <Rectangle x:Name="VerRect" Fill="#FF9FCBFF" Width="6" Margin="-1,0"  />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="Width" From="6" To="8" Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="(Fill).Color" From="#FF9FCBFF" To="#FF51A0FD" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="Width" From="8" To="6" Duration="0:0:0.1"/>
+                                        <ColorAnimation Storyboard.TargetName="VerRect" Storyboard.TargetProperty="(Fill).Color" From="#FF51A0FD" To="#FF9FCBFF" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="MinWidth" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="#FFDADADA">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.00001*"/>
+                            </Grid.RowDefinitions>
+                            <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource ScrollBarPageButton}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource ScrollBarPageButton}" Margin="3,0"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{DynamicResource VerticalThumb}" Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="VerticalGripper" Width="8"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+                    <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    <Setter Property="Height" Value="10"/>
+                    <Setter Property="MinHeight" Value="10"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Grid x:Name="Bg" SnapsToDevicePixels="true" Background="#FFDADADA">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.00001*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Track x:Name="PART_Track" Grid.Column="1" IsEnabled="{TemplateBinding IsMouseOver}">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource ScrollBarPageButton}" Margin="0" Width="Auto" Height="4"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource ScrollBarPageButton}" Width="Auto"  Height="4"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{DynamicResource HorizontalThumb}" Microsoft_Windows_Themes:ScrollChrome.ScrollGlyph="HorizontalGripper" Height="8"/>
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    <Canvas Width="390" Height="450">
+        <Rectangle Opacity="0.8" Fill="#FF0F436B" Width="390" Height="450">
+            <Rectangle.Effect>
+                <BlurEffect RenderingBias="Performance"/>
+            </Rectangle.Effect>
+        </Rectangle>
+        <Canvas Width="390" Height="450" RenderTransformOrigin="0.5,0.5">
+            <Canvas.RenderTransform>
+                <ScaleTransform x:Name="scaleTransform" ScaleX="0.8" ScaleY="0.8"/>
+            </Canvas.RenderTransform>
+            <Canvas.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleX" From=".8" To="1" Duration="0:0:0.4">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetName="scaleTransform"
+                                         Storyboard.TargetProperty="ScaleY" From="0.8" To="1" Duration="0:0:0.4">
+                                <DoubleAnimation.EasingFunction>
+                                    <CircleEase EasingMode="EaseOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Canvas.Triggers>
+            <local:SmallButtons x:Name="AddCodeBtn" HorizontalAlignment="Right" MouseLeftButtonDown="AddItem" ToolTipText="Add file" ImgOpacity="0.6" Height="35" VerticalAlignment="Top" Width="35" ImgHeight="20" ImgWidth="20" ImgSource="/ArnDESK;component/icos/add.png" ImgHorizontalAlignment="Stretch" MouseEnterColor="#FF0763AA" ImageMLOpacity="0.6" ImageMOOpacity="1" Background="Transparent"/>
+
+            <ScrollViewer Height="408" VerticalScrollBarVisibility="Auto" Canvas.Top="42" Width="390">
+                <VirtualizingStackPanel x:Name="Container" VerticalAlignment="Top"/>
+            </ScrollViewer>
+            <TextBlock Canvas.Left="294" TextWrapping="Wrap" FontSize="16" FontFamily="Segoe UI Semilight" Text="Quick codes" Canvas.Top="7" Foreground="White"/>
+        </Canvas>
+    </Canvas>
+</Page>
